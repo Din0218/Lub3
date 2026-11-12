@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://ccscqnl4n0etn"]
+
+[ext_resource type="Script" uid="uid://y4hanrexxpm5" path="res://Scripts/Bullet.cs" id="2_7hhu3"]
+[ext_resource type="Script" uid="uid://daw1kigcj6oc0" path="res://Components/ExplosionComponent.cs" id="3_ffd4u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upe8a"]
+albedo_color = Color(1, 0.36078432, 0.023529412, 1)
+emission_enabled = true
+emission = Color(0.93333334, 0.5803922, 0.007843138, 1)
+emission_energy_multiplier = 3.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g1a5u"]
+material = SubResource("StandardMaterial3D_upe8a")
+radius = 0.16259766
+height = 1.809082
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nr8tw"]
+radius = 3.0
+height = 6.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a7602"]
+radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffd4u"]
+albedo_color = Color(1, 0.42745098, 0.21176471, 1)
+emission_enabled = true
+emission = Color(0.9490196, 0.38431373, 0.13333334, 1)
+emission_energy_multiplier = 5.79
+
+[sub_resource type="SphereMesh" id="SphereMesh_j58pw"]
+material = SubResource("StandardMaterial3D_ffd4u")
+
+[node name="Bullet" type="Area3D" unique_id=584565579]
+script = ExtResource("2_7hhu3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1502789955]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_g1a5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1204902381]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_nr8tw")
+
+[node name="ExplosionComponent" type="Area3D" parent="." unique_id=1959652024]
+script = ExtResource("3_ffd4u")
+metadata/_custom_type_script = "uid://daw1kigcj6oc0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExplosionComponent" unique_id=1312013726]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_a7602")
+
+[node name="ExplosionEffect" type="MeshInstance3D" parent="." unique_id=168923979]
+visible = false
+mesh = SubResource("SphereMesh_j58pw")

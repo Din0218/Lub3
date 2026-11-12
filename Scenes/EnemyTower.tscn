@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://jk7yfsatklta"]
+
+[ext_resource type="Script" uid="uid://6kk6wbg1b413" path="res://Components/HealthComponent.cs" id="1_svtbh"]
+[ext_resource type="Script" uid="uid://b3w7bqx72eqaa" path="res://Components/MoveComponent.cs" id="2_3xq5j"]
+[ext_resource type="Script" uid="uid://db1fdk4ecqyf2" path="res://Components/ShootComponent.cs" id="3_8er0g"]
+[ext_resource type="PackedScene" uid="uid://ddmduva0ytvo0" path="res://Scenes/Bullet.tscn" id="4_2h8fy"]
+[ext_resource type="Script" uid="uid://bblmsunrxs5e2" path="res://Components/VisibilityComponent.cs" id="5_2h8fy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bmspi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2h8fy"]
+albedo_color = Color(0.691671, 0.20948523, 0.21639132, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_8er0g"]
+material = SubResource("StandardMaterial3D_2h8fy")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_upe8a"]
+radius = 10.0
+
+[node name="EnemyTower" type="CharacterBody3D" unique_id=1271252444 groups=["enemies"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=279000117]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_bmspi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=629767832]
+transform = Transform3D(3, 0, 0, 0, -1.3113416e-07, 3, 0, -3, -1.3113416e-07, 0, 0.5, 0)
+mesh = SubResource("SphereMesh_8er0g")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1984164858]
+script = ExtResource("1_svtbh")
+metadata/_custom_type_script = "uid://6kk6wbg1b413"
+
+[node name="MoveComponent" type="Node" parent="." unique_id=894450075]
+script = ExtResource("2_3xq5j")
+metadata/_custom_type_script = "uid://b3w7bqx72eqaa"
+
+[node name="ShootComponent" type="Node3D" parent="." unique_id=1817428162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3568928, 1, 0.11456609)
+script = ExtResource("3_8er0g")
+BulletScene = ExtResource("4_2h8fy")
+metadata/_custom_type_script = "uid://db1fdk4ecqyf2"
+
+[node name="VisibilityComponent" type="Area3D" parent="." unique_id=1864147757]
+script = ExtResource("5_2h8fy")
+TargetGroup = "towers"
+metadata/_custom_type_script = "uid://bblmsunrxs5e2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisibilityComponent" unique_id=1903528443]
+shape = SubResource("SphereShape3D_upe8a")

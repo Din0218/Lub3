@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dl8jgfmlidoh6"]
+
+[ext_resource type="Script" uid="uid://6kk6wbg1b413" path="res://Components/HealthComponent.cs" id="1_bow1k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upe8a"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g1a5u"]
+material = SubResource("StandardMaterial3D_upe8a")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g1a5u"]
+
+[node name="Core" type="StaticBody3D" unique_id=1828155565 groups=["towers"]]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=202094858]
+mesh = SubResource("BoxMesh_g1a5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=774961179]
+shape = SubResource("BoxShape3D_g1a5u")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=555290912]
+script = ExtResource("1_bow1k")
+MaxHealth = 200.0
+metadata/_custom_type_script = "uid://6kk6wbg1b413"

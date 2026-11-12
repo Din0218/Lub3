@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://1n252pm34f7j"]
+
+[ext_resource type="Script" uid="uid://y4hanrexxpm5" path="res://Scripts/Bullet.cs" id="1_p7njf"]
+[ext_resource type="Script" uid="uid://bbmihep8fpemq" path="res://Components/FreezeComponent.cs" id="2_p7njf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upe8a"]
+albedo_color = Color(0.101960786, 0.73333335, 0.9843137, 1)
+emission_enabled = true
+emission = Color(0.14264745, 0.73320776, 0.8469741, 1)
+emission_energy_multiplier = 3.9
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g1a5u"]
+material = SubResource("StandardMaterial3D_upe8a")
+radius = 0.16259766
+height = 1.809082
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nr8tw"]
+radius = 0.163
+height = 1.809
+
+[node name="Bullet" type="Area3D" unique_id=584565579]
+script = ExtResource("1_p7njf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1502789955]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_g1a5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1204902381]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_nr8tw")
+
+[node name="FreezeComponent" type="Area3D" parent="." unique_id=1360544420]
+script = ExtResource("2_p7njf")
+metadata/_custom_type_script = "uid://bbmihep8fpemq"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FreezeComponent" unique_id=1119991415]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_nr8tw")

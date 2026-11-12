@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d2xe1v664byxu"]
+
+[ext_resource type="Script" uid="uid://de3ksdwh7eaya" path="res://Scripts/Player.cs" id="1_rpqav"]
+[ext_resource type="PackedScene" uid="uid://ddmduva0ytvo0" path="res://Scenes/Bullet.tscn" id="2_gntrk"]
+[ext_resource type="Script" uid="uid://6kk6wbg1b413" path="res://Components/HealthComponent.cs" id="2_kyqiw"]
+[ext_resource type="PackedScene" uid="uid://cl55wolgl0m2o" path="res://Scenes/Tower.tscn" id="3_dewec"]
+[ext_resource type="PackedScene" uid="uid://okoqmytbod1t" path="res://Scenes/FreezeTower.tscn" id="4_nn08x"]
+[ext_resource type="PackedScene" uid="uid://cudqxcrolrymv" path="res://Scenes/ExplosionTower.tscn" id="5_52ee3"]
+[ext_resource type="Material" uid="uid://bn1sjt1r37i7s" path="res://Scenes/PreviewMaterial.tres" id="6_52ee3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upe8a"]
+albedo_color = Color(0.039215688, 0.62352943, 0.023529412, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g1a5u"]
+material = SubResource("StandardMaterial3D_upe8a")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g1a5u"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1457844300 groups=["towers"]]
+collision_layer = 3
+script = ExtResource("1_rpqav")
+BulletScene = ExtResource("2_gntrk")
+TowerScene = ExtResource("3_dewec")
+FreezeTowerScene = ExtResource("4_nn08x")
+ExplosionTowerScene = ExtResource("5_52ee3")
+PreviewMaterial = ExtResource("6_52ee3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1544508264]
+mesh = SubResource("CapsuleMesh_g1a5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=743874951]
+shape = SubResource("CapsuleShape3D_g1a5u")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=72594056]
+script = ExtResource("2_kyqiw")
+metadata/_custom_type_script = "uid://6kk6wbg1b413"
